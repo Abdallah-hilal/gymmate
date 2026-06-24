@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>GymMate — Logo (print)</title>
+<link rel="stylesheet" href="../styles.css"/>
+<style>
+  :root { -webkit-print-color-adjust: exact; print-color-adjust: exact; color-adjust: exact; }
+  html, body { margin: 0; background: var(--color-bg); color: var(--text-primary); font-family: var(--font-body); }
+
+  .sheet { padding: 18mm 14mm 14mm; min-height: 100vh; box-sizing: border-box; }
+  .head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--color-border); padding-bottom: 14px; margin-bottom: 22px; }
+  .head h1 { font-family: var(--font-display); font-weight: 700; font-size: 28px; letter-spacing: -0.02em; margin: 0; color: #fff; }
+  .head .tag { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+  .head .meta { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-tertiary); text-align: right; }
+  .head .meta b { color: var(--text-secondary); font-weight: 600; display: block; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 10px; }
+  .cell { border-radius: var(--radius-card); overflow: hidden; border: 1px solid var(--color-border); display: flex; flex-direction: column; break-inside: avoid; }
+  .frame { flex: 1; display: flex; align-items: center; justify-content: center; padding: 16px; min-height: 100px; }
+  .tiles .frame { padding: 12px; min-height: 78px; }
+  .meta { padding: 7px 11px; background: var(--color-surface); border-top: 1px solid var(--color-border); font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-tertiary); display: flex; justify-content: space-between; }
+  .meta b { color: var(--text-secondary); font-weight: 600; }
+  .frame img { max-width: 100%; height: auto; }
+  .tiles .frame img { width: 56px; height: 56px; }
+
+  .bg-dark { background: #000; }
+  .bg-charcoal { background: var(--gm-charcoal); }
+  .bg-red { background: var(--accent); }
+  .bg-light { background: #F4F4F5; }
+
+  .foot { margin-top: 14px; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-tertiary); }
+
+  @page { size: A4 landscape; margin: 8mm; }
+
+  @media print {
+    *, *::before, *::after {
+      animation-delay: -99s !important; animation-duration: .001s !important;
+      animation-iteration-count: 1 !important; animation-fill-mode: both !important;
+      animation-play-state: running !important; transition-duration: 0s !important;
+    }
+    html, body { background: var(--color-bg) !important; }
+    .sheet { padding: 6mm 6mm 4mm; min-height: 0; }
+  }
+</style>
+</head>
+<body>
+  <div class="sheet">
+    <header class="head">
+      <div>
+        <span class="tag">AUTOMATE · RETAIN · GROW</span>
+        <h1>Logo system</h1>
+      </div>
+      <div class="meta"><b>GymMate Design System</b>Brand · Logo specimen</div>
+    </header>
+
+    <div class="grid">
+      <div class="cell"><div class="frame bg-dark"><img src="logo-lockup-dark.png" alt="GymMate"/></div><div class="meta"><b>Primary lockup</b><span>on black</span></div></div>
+      <div class="cell"><div class="frame bg-light"><img src="logo-lockup-light.png" alt="GymMate"/></div><div class="meta"><b>Lockup</b><span>on light</span></div></div>
+      <div class="cell"><div class="frame bg-red"><img src="logo-lockup-red.png" alt="GymMate"/></div><div class="meta"><b>Lockup</b><span>on red</span></div></div>
+    </div>
+
+    <div class="tiles">
+      <div class="cell"><div class="frame bg-charcoal"><img src="tile-black.png" alt=""/></div><div class="meta"><b>Tile</b><span>black</span></div></div>
+      <div class="cell"><div class="frame bg-light"><img src="tile-red.png" alt=""/></div><div class="meta"><b>Tile</b><span>red</span></div></div>
+      <div class="cell"><div class="frame bg-charcoal"><img src="tile-white.png" alt=""/></div><div class="meta"><b>Tile</b><span>white</span></div></div>
+      <div class="cell"><div class="frame bg-light"><img src="tile-dark.png" alt=""/></div><div class="meta"><b>Tile</b><span>gradient</span></div></div>
+    </div>
+
+    <div class="foot">
+      <span>GM monogram · two figures · coach + member</span>
+      <span>Wordmark: Space Grotesk 700 — "Gym" charcoal/white, "Mate" red</span>
+    </div>
+  </div>
+
+  <script>
+    (async () => {
+      try { await document.fonts.ready; } catch {}
+      await new Promise((r) => setTimeout(r, 500));
+      window.print();
+    })();
+  </script>
+</body>
+</html>

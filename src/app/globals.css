@@ -1,26 +1,131 @@
 @import "tailwindcss";
 
+/* ─── Light mode (default) ─── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* New semantic names */
+  --bg0: #ffffff;
+  --bg1: #f4f6fb;
+  --bg2: #e8edf5;
+  --card: #ffffff;
+  --card-border: rgba(0,0,0,.08);
+  --text1: #0d1117;
+  --text2: #374151;
+  --text3: #6b7280;
+
+  /* Old names kept for backward compat */
+  --surface-0: #ffffff;
+  --surface-1: #f4f6fb;
+  --surface-2: #e8edf5;
+  --hero-bg: #080C18;
+  --hero-card: rgba(0,0,0,.06);
+  --hero-border: rgba(0,0,0,.10);
+  --text-primary: #0d1117;
+  --text-secondary: #374151;
+  --text-muted: #6b7280;
+  --border-color: rgba(0,0,0,.10);
+
+  --red: #E8341C;
+  --red-dim: rgba(232,52,28,.15);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─── Dark mode ─── */
+.dark {
+  --bg0: #0F1525;
+  --bg1: #141929;
+  --bg2: #1a2035;
+  --card: #1e2640;
+  --card-border: rgba(255,255,255,.08);
+  --text1: #f0f4ff;
+  --text2: #a8b4cc;
+  --text3: #64748b;
+
+  --surface-0: #0F1525;
+  --surface-1: #141929;
+  --surface-2: #1a2035;
+  --hero-bg: #080C18;
+  --hero-card: rgba(255,255,255,.06);
+  --hero-border: rgba(255,255,255,.10);
+  --text-primary: #f0f4ff;
+  --text-secondary: #a8b4cc;
+  --text-muted: #64748b;
+  --border-color: rgba(255,255,255,.08);
+
+  --red: #E8341C;
+  --red-dim: rgba(232,52,28,.15);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* ─── Base ─── */
+*, *::before, *::after { box-sizing: border-box; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg0);
+  color: var(--text1);
+  transition: background-color .3s, color .3s;
+  font-family: var(--font-inter), sans-serif;
 }
+
+/* ─── Semantic section helpers ─── */
+.s0 { background-color: var(--surface-0); color: var(--text-primary); }
+.s1 { background-color: var(--surface-1); color: var(--text-primary); }
+.s2 { background-color: var(--surface-2); color: var(--text-primary); }
+.s-hero { background-color: var(--hero-bg); color: #f0f4ff; }
+
+/* ─── Card helpers ─── */
+.c-card {
+  background-color: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: .75rem;
+}
+.c-hero-card {
+  background-color: var(--hero-card);
+  border: 1px solid var(--hero-border);
+  border-radius: .75rem;
+}
+
+/* ─── Text helpers ─── */
+.t1 { color: var(--text-primary); }
+.t2 { color: var(--text-secondary); }
+.t3 { color: var(--text-muted); }
+
+/* ─── Navbar glass ─── */
+.glass {
+  background: rgba(8,12,24,.80);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.glass-light, .light-glass {
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0,0,0,.08);
+}
+
+/* ─── Gradient text (red accent) ─── */
+.gradient-text {
+  background: linear-gradient(135deg, #E8341C 0%, #ff6b4a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Marquee (TrustedBy) ─── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+  display: flex;
+  width: max-content;
+}
+
+/* ─── Red glow ─── */
+.red-glow {
+  box-shadow: 0 0 40px rgba(232,52,28,.25), 0 0 80px rgba(232,52,28,.10);
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg1); }
+::-webkit-scrollbar-thumb { background: var(--text3); border-radius: 3px; }
