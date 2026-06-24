@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Inbox, ArrowRight } from "lucide-react";
 import { useLang, useTheme } from "@/lib/i18n";
@@ -231,17 +232,15 @@ export default function UnifiedInbox() {
               {ar ? "معاينة الصندوق الموحّد" : "Unified inbox preview"}
             </span>
           </div>
-          {/* TODO: replace this placeholder with a real Chatwoot screenshot (e.g. <Image src="/chatwoot.png" .../>) */}
-          <div className="aspect-[16/8] rounded-2xl border border-dashed border-[var(--border-color)] bg-[var(--surface-1)] flex flex-col items-center justify-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-[#E63946]/10 flex items-center justify-center">
-              <Inbox size={22} className="text-[#E63946]/70" />
-            </div>
-            <div className="text-[var(--text-muted)] text-sm font-medium">
-              {ar ? "صورة Chatwoot هنا" : "Chatwoot screenshot goes here"}
-            </div>
-            <div className="text-[var(--text-muted)]/60 text-xs">
-              {ar ? "ضع الصورة في /public واستبدل هذا المربّع" : "Drop the image in /public and replace this box"}
-            </div>
+          <div className="rounded-2xl border border-[var(--border-color)] bg-[var(--surface-1)] overflow-hidden shadow-2xl">
+            <Image
+              src="/chatwoot.png"
+              alt={ar ? "واجهة الصندوق الموحّد Chatwoot" : "Chatwoot unified inbox interface"}
+              width={1660}
+              height={943}
+              className="w-full h-auto"
+              priority={false}
+            />
           </div>
         </motion.div>
       </div>

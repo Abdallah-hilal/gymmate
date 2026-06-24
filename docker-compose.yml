@@ -1,0 +1,20 @@
+services:
+  gymmate-website:
+    build: .
+    image: gymmate-website:latest
+    container_name: gymmate-website
+    restart: unless-stopped
+    networks:
+      - n8nchatevo
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=n8nchatevo"
+      - "traefik.http.routers.gymmate.entrypoints=web,websecure"
+      - "traefik.http.routers.gymmate.rule=Host(`gymmate.io`) || Host(`www.gymmate.io`)"
+      - "traefik.http.routers.gymmate.tls=true"
+      - "traefik.http.routers.gymmate.tls.certresolver=mytlschallenge"
+      - "traefik.http.services.gymmate.loadbalancer.server.port=3000"
+
+networks:
+  n8nchatevo:
+    external: true
